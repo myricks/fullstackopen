@@ -1,0 +1,16 @@
+title POST REQUEST SPA
+
+Selain->Palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+note over Selain:
+Pyynnössä header joka kertoo että
+Content-type: application json
+end note over 
+
+note over Palvelin: 
+Palvelin vastaa 201 pyyntöön
+Muita HTTP pyyntöjä ei suoriteta
+end note over 
+
+Tapahtumankäisttelijä hoitaa tilanteen jossa lomake submitoidaan ja
+koodi luo muistiinpanon ja lisää sen muistiinpanojen listalle
+sitten piirtää ruudun sisällön uudestaan

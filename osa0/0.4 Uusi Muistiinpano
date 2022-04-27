@@ -1,0 +1,17 @@
+title POST REQUEST
+
+Selain->Palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+note over Palvelin: 
+Palvelin vastaa 302 pyyntöön
+ja kehottaa selainta tekemään HTTP GET pyynnön
+header location paikkaan /exampleapp/notes
+end note over 
+Palvelin->Selain: redirect to /exampleapp/notes
+Selain->Palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Palvelin->Selain: HTML-Koodi
+Selain->Palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Palvelin->Selain: main.css
+Selain->Palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Palvelin->Selain: main.js
+Selain->Palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Palvelin->Selain: data.json
