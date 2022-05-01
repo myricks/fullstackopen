@@ -1,14 +1,14 @@
 import Course from './components/Course';
 
 
-const Total = (props) => {
-  var total = 0;
-  for (var i = 0; i < props.parts.length; i++) {
-    total += props.parts[i].exercises;
-  }
+const Total = ({ parts }) => {
+  const total = parts.reduce(
+    (previousValue, parts) => previousValue + parts.exercises, 0);
   return (
     <div>
-      <p> {total} </p>
+      <h4>
+        Total of {total} exercises
+      </h4>
     </div>
   )
 }
@@ -35,6 +35,11 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
+      },
+      {
+        name: 'Redux',
+        exercises: 11,
+        id: 4
       }
     ]
   }
@@ -43,6 +48,7 @@ const App = () => {
   return (
     <div>
       <Course course={course} />
+      <Total parts={course.parts} />
     </div>
   );
 }
