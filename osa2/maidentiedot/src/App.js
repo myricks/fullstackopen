@@ -6,6 +6,7 @@ import Filter from './components/Filter';
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [filter, setFilter] = useState('');
+  const [country, setCountry] = useState('');
 
   useEffect(() => {
     console.log('effect')
@@ -27,7 +28,10 @@ const App = () => {
   return (
     <div>
       <Filter filter={filter} setFilter={setFilter} />
-      <Countries countries={filteredCountries} />
+      <Countries countries={filteredCountries}
+        country={country}
+        setCountry={setCountry}
+        setFilter={setFilter} />
     </div>
   )
 }

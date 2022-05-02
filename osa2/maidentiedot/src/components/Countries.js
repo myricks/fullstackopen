@@ -1,4 +1,16 @@
-const Countries = ({ countries }) => {
+const Button = ({ handleClick, country }) => {
+    return (
+        <button onClick={() => handleClick(country)}>show</button>
+    );
+}
+
+const Countries = ({ countries, country, setCountry, setFilter }) => {
+
+    const handleClick = (country) => {
+        setCountry(country);
+        setFilter(country.name.common);
+    }
+
     if (countries.length > 10) {
         return (
             <div>
@@ -6,7 +18,7 @@ const Countries = ({ countries }) => {
             </div>
         )
     } else if (countries.length === 1) {
-        const country = countries[0];
+        setCountry(countries[0]);
         console.log(country.languages)
         return (
             <div>
@@ -25,7 +37,9 @@ const Countries = ({ countries }) => {
         return (
             <div>
                 {countries.map(country =>
-                    <p key={country.name.common}>{country.name.common}</p>
+                    <p key={country.name.common}>{country.name.common}
+                        <Button handleClick={handleClick} country={country} />
+                    </p>
                 )}
             </div>)
     }
