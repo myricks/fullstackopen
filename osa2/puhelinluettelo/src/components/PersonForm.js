@@ -1,11 +1,26 @@
 import { useState } from 'react';
 import personService from '../services/persons';
 
-const PersonForm = ({ persons, setPersons }) => {
+const PersonForm = ({ persons, setPersons, setNotification,
+    setNotificationStyle }) => {
 
     const [newName, setNewName] = useState('');
     const [newNumber, setNewNumber] = useState('');
-
+    const notifStyleAdd = {
+        color: 'blue',
+        fontSize: 20,
+        backgroundColor: 'gray',
+        borderStyle: 'solid',
+        borderColor: 'blue',
+        padding: 10,
+    }
+    const notifStyleError = {
+        color: 'white',
+        fontSize: 20,
+        backgroundColor: 'red',
+        borderStyle: 'solid',
+        padding: 10,
+    }
     const addNewPersonButton = (event) => {
         event.preventDefault();
         const personObject = {
@@ -23,6 +38,14 @@ const PersonForm = ({ persons, setPersons }) => {
                     .then(returnedPerson => {
                         setPersons(persons.map(person =>
                             person.name !== newName ? person : returnedPerson))
+                    })
+                    .catch(error => {
+                        setNotificationStyle(notifStyleError);
+                        setNotification(`Person ${newName} does not exist`);
+
+                        setTimeout(() => {
+                            setNotification(null);
+                        }, 5000)
                     });
             }
         } else {
@@ -31,7 +54,14 @@ const PersonForm = ({ persons, setPersons }) => {
                 .create(personObject)
                 .then(newPerson => {
                     setPersons(persons.concat(newPerson))
-                });
+                    setNotificationStyle(notifStyleAdd)
+                    setNotification(`Added ${newPerson.name}`)
+                })
+                .then(() => {
+                    setTimeout(() => {
+                        setNotification(null)
+                    }, 5000);
+                })
             setNewName('');
             setNewNumber('');
         }
