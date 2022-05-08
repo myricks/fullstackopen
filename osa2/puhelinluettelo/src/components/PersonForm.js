@@ -12,11 +12,21 @@ const PersonForm = ({ persons, setPersons }) => {
             name: newName,
             number: newNumber
         }
-        if (persons.filter(person =>
-            person.name === newName).length > 0) {
-            console.log(personObject.name);
-            window.alert(`${newName} is already added to phonebook`);
+        const person = persons.filter((person) =>
+            person.name === newName);
+        const changedPerson = { ...person[0], number: newNumber };
+        if (changedPerson.id !== undefined) {
+            console.log('changedPerson', changedPerson)
+            if (window.confirm(`Do you want to update ${newName} number?`)) {
+                personService
+                    .update(changedPerson.id, changedPerson)
+                    .then(returnedPerson => {
+                        setPersons(persons.map(person =>
+                            person.name !== newName ? person : returnedPerson))
+                    });
+            }
         } else {
+
             personService
                 .create(personObject)
                 .then(newPerson => {
@@ -31,8 +41,6 @@ const PersonForm = ({ persons, setPersons }) => {
         setNewName(event.target.value);
     }
     const numberFieldInput = (event) => setNewNumber(event.target.value);
-
-
 
     return (
         <form>

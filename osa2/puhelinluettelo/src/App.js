@@ -18,7 +18,7 @@ const App = () => {
 
   const personsToShow = persons.filter(person =>
     person.name.toUpperCase().includes(filter.toUpperCase()))
-  console.log(personsToShow)
+  console.log('personstoshow', personsToShow)
   return (
     <div>
       <h2>Phonebook</h2>
@@ -26,7 +26,7 @@ const App = () => {
       <h2>Add a new</h2>
       <PersonForm persons={persons} setPersons={setPersons} />
       <h2>Numbers</h2>
-      <Persons persons={personsToShow} />
+      <Persons persons={personsToShow} setPersons={setPersons} />
     </div>
   )
 
