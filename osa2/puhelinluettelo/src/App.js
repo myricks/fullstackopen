@@ -18,10 +18,8 @@ const App = () => {
   }, []);
 
   const [filter, setFilter] = useState('');
-
   const personsToShow = persons.filter(person =>
     person.name.toUpperCase().includes(filter.toUpperCase()))
-  console.log('personstoshow', personsToShow)
   return (
     <div>
       <h2>Phonebook</h2>

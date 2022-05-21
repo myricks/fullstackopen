@@ -1,0 +1,25 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for blog application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "npx eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blog",
+    "backend",
+    "fullstack",
+    "app",
+    "application"
+  ],
+  "author": "Joonas Yli-Saari",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.16.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
+}

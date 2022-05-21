@@ -57,11 +57,17 @@ const PersonForm = ({ persons, setPersons, setNotification,
                     setNotificationStyle(notifStyleAdd)
                     setNotification(`Added ${newPerson.name}`)
                 })
+                .catch(error => {
+                    console.log('error.message', error.response.data)
+                    setNotificationStyle(notifStyleError);
+                    setNotification(error.response.data.error);
+                })
                 .then(() => {
                     setTimeout(() => {
                         setNotification(null)
                     }, 5000);
                 })
+
             setNewName('');
             setNewNumber('');
         }
