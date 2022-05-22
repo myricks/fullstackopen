@@ -1,4 +1,4 @@
-const { totalLikes } = require('../utils/list_helper')
+const { totalLikes, favoriteBlog } = require('../utils/list_helper')
 
 const blogs = [
     {
@@ -61,5 +61,11 @@ describe('Total likes of', () => {
     test('of all blogs is correct', () => {
         const likes = blogs.map(blog => blog.likes)
         expect(totalLikes(likes)).toBe(36)
+    })
+})
+
+describe('Blog with most likes is', () => {
+    test('Canonical string reduction', () => {
+        expect(favoriteBlog(blogs)).toEqual(blogs[2])
     })
 })
