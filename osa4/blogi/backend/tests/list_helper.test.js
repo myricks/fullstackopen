@@ -1,4 +1,4 @@
-const { totalLikes, favoriteBlog } = require('../utils/list_helper')
+const { totalLikes, favoriteBlog, mostLikes, mostBlogs } = require('../utils/list_helper')
 
 const blogs = [
     {
@@ -68,4 +68,14 @@ describe('Blog with most likes is', () => {
     test('Canonical string reduction', () => {
         expect(favoriteBlog(blogs)).toEqual(blogs[2])
     })
+})
+
+describe('Author with most', () => {
+    test('likes is Edsger W. Dijkstra', () => {
+        expect(mostLikes(blogs)).toEqual({ author: 'Edsger W. Dijkstra', likes: 17 })
+    })
+    test('blogs published is Robert C. Martin', () => {
+        expect(mostBlogs(blogs)).toEqual({ author: 'Robert C. Martin', blogs: 3 })
+    })
+
 })
