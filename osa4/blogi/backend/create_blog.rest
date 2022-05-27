@@ -4,6 +4,5 @@ Content-Type: application/json
 {
     "title": "Amazing spider-man",
     "author": "J.R.R Tolkien",
-    "url": "www.spiderman.com",
     "likes": 5000
 }
