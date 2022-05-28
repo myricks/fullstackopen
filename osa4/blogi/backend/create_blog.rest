@@ -4,5 +4,10 @@ Content-Type: application/json
 {
     "title": "Amazing spider-man",
     "author": "J.R.R Tolkien",
+    "url": "lolol",
     "likes": 5000
 }
+
+###
+
+DELETE http://localhost:3003/api/blogs/62892e6dc28b238f78ec4b2f
