@@ -93,6 +93,33 @@ describe('Sending blog without', () => {
     })
 })
 
+describe('Deletion of blog', () => {
+    test('with correct id is succesful and returns 204', async () => {
+        const blogs = await api.get('/api/blogs')
+        const blog = blogs.body[0]
+        await api.delete(`/api/blogs/${blog.id}`).expect(204)
+
+        const blogsAtEnd = await api.get('/api/blogs')
+        expect(blogsAtEnd.body).toHaveLength(testBlogs.length - 1)
+    })
+})
+
+describe('Updating of blog', () => {
+    test('with correct id updates fields correctly', async () => {
+        const blogs = await api.get('/api/blogs')
+        const blogToUpdate = blogs.body[0]
+        const blog = {
+            title: 'testBlog3',
+            author: 'Testi Testaaja',
+            url: 'testi.testi',
+            likes: 15
+        }
+        await api.put(`/api/blogs/${blogToUpdate.id}`).send(blog)
+        const blogsAtEnd = await api.get('/api/blogs')
+        expect(blogsAtEnd.body[0].title).toContain('testBlog3')
+    })
+})
+
 afterAll(() => {
     mongoose.disconnect()
 })
